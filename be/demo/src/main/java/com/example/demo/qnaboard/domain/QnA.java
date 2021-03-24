@@ -3,9 +3,7 @@ package com.example.demo.qnaboard.domain;
 import java.util.Date;
 
 import javax.persistence.*;
-import lombok.Data;
 
-@Data
 @Entity
 @Table(name = "")
 public class QnA {
@@ -13,7 +11,7 @@ public class QnA {
     @Id
     @GeneratedValue
     @Column(name = "board_no")
-    private long board_no;
+    private long boardNo;
 
     @Column(name = "title")
     private String title;
@@ -26,5 +24,4 @@ public class QnA {
 
     @Column(name = "regdate")
     private Date regdate;
-
 }

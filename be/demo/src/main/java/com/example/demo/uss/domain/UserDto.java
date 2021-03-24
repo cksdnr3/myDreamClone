@@ -4,9 +4,9 @@ import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
+@Data
 @Component 
 public class UserDto {
-    private static final long serialVersionUID = 1L;
 	private String user_no;
 	private String username;
 	private String password;

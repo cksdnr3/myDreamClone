@@ -11,7 +11,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "chats")
 public class Chat {
-		
 	
 	@Id
 	@GeneratedValue
@@ -32,8 +31,5 @@ public class Chat {
 
 	@Column(name = "regdate")
 	private String regdate;
-
-		
-
-	}
+}
 

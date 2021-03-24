@@ -2,9 +2,6 @@ package com.example.demo.sns.domain;
 
 import javax.persistence.*;
 
-import lombok.Data;
-
-@Data
 @Entity
 @Table(name = "boards")
 public class SNS {
@@ -15,7 +12,7 @@ public class SNS {
     private String username;
     
     @Column(name = "board_content")
-    private String board_content;
+    private String boardContent;
 
     @Column(name = "regdate")
     private String regdate;

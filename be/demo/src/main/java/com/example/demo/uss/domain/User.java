@@ -2,12 +2,10 @@ package com.example.demo.uss.domain;
 
 import javax.persistence.*;
 
-import lombok.Data;
-
-@Data
 @Entity
 @Table( name = "users")
 public class User {
+	
     @Id
     @GeneratedValue
     @Column(name="user_no")
@@ -18,7 +16,6 @@ public class User {
 
 	@Column(name = "password") 
 	private String password;
-	
 		
 	@Column(name = "name")
 	private String name;
