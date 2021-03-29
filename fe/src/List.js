@@ -9,7 +9,7 @@ const List = () => {
         axios.get(`http://localhost:8080/auctions`)
         .then(res => {
           setAuctions(res.data)
-
+          
         })
         .catch(err => {
           console.log(err)

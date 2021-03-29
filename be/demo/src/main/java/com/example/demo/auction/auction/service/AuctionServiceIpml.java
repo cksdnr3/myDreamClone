@@ -55,5 +55,4 @@ public class AuctionServiceIpml extends AbstractService<Auction> implements Auct
     public Auction getOne(long id) {
         return null;
     }
-
 }

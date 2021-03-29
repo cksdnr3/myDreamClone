@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
 
 const Detail = (props) => {
     const [productDetail, setproductDetail] = useState("");
@@ -29,6 +28,8 @@ const Detail = (props) => {
         axios.delete(`http://localhost:8080/auctions/${props.match.params.id}`)
         .then(res => {
             console.log(res.data)
+            alert("삭제되었습니다.")
+            props.history.push('/list')
         })
         .catch(err => {
             console.log(err);

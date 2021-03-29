@@ -1,7 +1,7 @@
-import { React, useState } from 'react'
+import { React, useCallback, useState } from 'react'
 import axios from 'axios'
 
-const Create = () => {
+const Create = (props) => {
     const [auctionNo, setAuctionNo] = useState('');
     const [reservedPrice, setReservedPrice] = useState('');
     const [placedPrice, setPlacedPrice] = useState('');
@@ -12,9 +12,9 @@ const Create = () => {
     const [winBid, setWinBid] = useState('');
     const [userNo, setuserNo] = useState('');
 
-    const handleReservedPriceChange = (e) => {
+    const handleReservedPriceChange = useCallback((e) => {
         setReservedPrice(e.target.value)
-    }
+    },[])
 
     const handlePlacedPriceChange = (e) => {
         setPlacedPrice(e.target.value)
@@ -32,6 +32,7 @@ const Create = () => {
         axios.post(`http://localhost:8080/auctions`, { reservedPrice, placedPrice, product, productNo })
         .then(res => {
           console.log(res)
+          props.history.push('/list')
         })
         .catch(err => {
           console.log(err)

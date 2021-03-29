@@ -69,6 +69,6 @@ public class AutcionController {
 
         service.deleteById(auctionNo);
 
-        return new ResponseEntity<>("delete success", HttpStatus.OK);
+        return new ResponseEntity<>("delete success", HttpStatus.NO_CONTENT);
     }
 }

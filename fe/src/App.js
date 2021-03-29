@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import './App.css';
 import { Link, Route } from 'react-router-dom'
 import Create from './Create'
@@ -7,22 +7,6 @@ import Detail from './Detail'
 
 const App = () => {
 
-  
-
-
-    
-
-  
-    // const deleteById = () => {
-    //   axios.delete(`http://localhost:8080/auctions/${auctionNo}`)
-    //   .then(res => {
-    //     console.log(JSON.stringify(res))
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
-    // }
-  
     return (<>
     <ul>
         <li><Link to="/">Home</Link></li>
