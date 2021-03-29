@@ -1,13 +1,9 @@
 package com.example.demo.chat.domain;
-
 import java.io.Serializable;
-
 
 import org.springframework.stereotype.Component;
 
 import lombok.Data;
-
-
 
 @Component
 @Data
@@ -20,4 +16,3 @@ public class ChatDto implements Serializable{
 	private String username;
 	private String regdate;
 }
-
