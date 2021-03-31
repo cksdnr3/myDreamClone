@@ -1,5 +1,7 @@
 package com.example.demo.uss.domain;
 
+import java.sql.Date;
+
 import org.springframework.stereotype.Component;
 
 import lombok.Data;
@@ -7,13 +9,13 @@ import lombok.Data;
 @Data
 @Component 
 public class UserDto {
-	private String user_no;
+	private long userNo;
 	private String username;
 	private String password;
-	private String name;
+	private String realName;
 	private String email;
-	private String birthday;
+	private Date birthday;
 	private String gender;
-	private String regdate;
-	private String phone_number;
+	private Date regdate;
+	private String phoneNumber;
 }

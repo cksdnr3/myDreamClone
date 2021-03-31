@@ -1,19 +1,24 @@
 package com.example.demo.auction.auction.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.example.demo.uss.domain.User;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @Entity
 @Getter
+@NoArgsConstructor
 @Table(name="auctions")
 public class Auction {
     
@@ -37,12 +42,9 @@ public class Auction {
     @Column(name="product_no")
     private String productNo;
 
-    @Column(name="user_no")
-    private String userNo;
-
-    @Column(name="username")
-    private String username;
-
     @Column(name="product")
     private String product;
+
+    @OneToMany(mappedBy = "auction")
+    public List<User> user;
 }

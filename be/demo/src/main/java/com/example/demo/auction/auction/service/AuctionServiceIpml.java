@@ -17,8 +17,9 @@ public class AuctionServiceIpml extends AbstractService<Auction> implements Auct
     private final AuctionRepository repo;
 
     @Override
-    public Auction save(Auction entity) {
-        return repo.save(entity);
+    public void save(Auction entity) {
+
+        repo.save(entity);
     }
 
     @Override

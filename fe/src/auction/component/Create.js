@@ -12,22 +12,6 @@ const Create = (props) => {
     const [winBid, setWinBid] = useState('');
     const [userNo, setuserNo] = useState('');
 
-    const handleReservedPriceChange = useCallback((e) => {
-        setReservedPrice(e.target.value)
-    },[])
-
-    const handlePlacedPriceChange = (e) => {
-        setPlacedPrice(e.target.value)
-    }
-
-    const handleProductChange = (e) => {
-        setProduct(e.target.value)
-    }
-
-    const handleProductNoChange = (e) => {
-        setProductNo(e.target.value)
-    }
-
     const create = () => {
         axios.post(`http://localhost:8080/auctions`, { reservedPrice, placedPrice, product, productNo })
         .then(res => {
@@ -41,33 +25,33 @@ const Create = (props) => {
 
     return (
         <>
-        <form onSubmit={(e) => {
-            e.preventDefault();
-            console.log(e.target.reservedPrice.value, e.target.placedPrice.value);
-        }}>
+        <form onSubmit={(e) => e.preventDefault()}>
             <h3>create</h3>
             <table>
-                <thead></thead>
+                <thead/>
                 <tbody>
+                    <tr>
+                        <td>ID</td>
+                    </tr>
                     <tr>
                         <td>제시 가격</td>
                         <td><input type="text" name="reservedPrice" value={reservedPrice} placeholder="Insert ReservedPrice" 
-                        onChange={handleReservedPriceChange} /></td>
+                        onChange={ e => setReservedPrice(e.target.value) } /></td>
                     </tr>
                     <tr>
                         <td>경매 시작 가격</td>
                         <td><input type="text" name="placedPrice" value={placedPrice} placeholder="Insert PlacedPrice" 
-                        onChange={handlePlacedPriceChange} /></td>
+                        onChange={ e => setPlacedPrice(e.target.value)} /></td>
                     </tr>
                     <tr>
                         <td>상품</td>
                         <td><input type="text" name="product" value={product} placeholder="Insert Product" 
-                        onChange={handleProductChange} /></td>
+                        onChange={ e => setProduct(e.target.value) } /></td>
                     </tr>
                     <tr>
                         <td>상품 번호</td>
                         <td><input type="text" name="productNo" value={productNo} placeholder="Insert ProductNo" 
-                        onChange={handleProductNoChange} /></td>
+                        onChange={ e => setProductNo(e.target.value) } /></td>
                     </tr>
                 </tbody>
             </table>

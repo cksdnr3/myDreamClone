@@ -9,6 +9,6 @@ public abstract class AbstractService<T> {
 	public abstract List<T> findAll();
 	public abstract void deleteById(long id);
 	public abstract T getOne(long id);
-	public abstract T save(T entity);
+	public abstract void save(T entity);
 	public abstract Optional<T> findById(long id);
 }
