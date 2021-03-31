@@ -12,7 +12,7 @@ const Create = (props) => {
     const [winBid, setWinBid] = useState('');
     const [userNo, setuserNo] = useState('');
 
-    const create = () => {
+    const regist = () => {
         axios.post(`http://localhost:8080/auctions`, { reservedPrice, placedPrice, product, productNo })
         .then(res => {
           console.log(res)
@@ -31,7 +31,7 @@ const Create = (props) => {
                 <thead/>
                 <tbody>
                     <tr>
-                        <td>ID</td>
+                        <td>User: {}</td>
                     </tr>
                     <tr>
                         <td>제시 가격</td>
@@ -56,7 +56,7 @@ const Create = (props) => {
                 </tbody>
             </table>
 
-            <button type="submit" onClick={create} >create</button>
+            <button type="submit" onClick={regist} >create</button>
         </form>
         </>
     )
