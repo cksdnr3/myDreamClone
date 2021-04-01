@@ -48,26 +48,31 @@ public class AutcionController {
         return new ResponseEntity<>(auctionList, HttpStatus.OK);
     }
 
-    @GetMapping("/{auctionNo}")
-    public ResponseEntity<Optional<Auction>> read(@PathVariable long auctionNo) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Auction>> read(@PathVariable long id) {
 
-        Optional<Auction> auction = service.findById(auctionNo);
+        Optional<Auction> auction = service.findById(id);
 
         return new ResponseEntity<>(auction, HttpStatus.OK);
     }
 
-    @PutMapping("/{auctionNo}")
-    public ResponseEntity<String> update(@PathVariable long auctionNo) {
+    @PutMapping("/{id}")
+    public ResponseEntity<String> update(@PathVariable long id, 
+                                        @RequestBody Auction entity) {
 
-        service.saveSumReservedPrice(auctionNo);
-
+        // log.info("users: " + entity.getUsers().size());
+        // if (false) {
+        //     service.saveSumReservedPrice(id);
+        // } else {
+        //     service.updateById(id, entity);
+        // }
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
-    @DeleteMapping("/{auctionNo}")
-    public ResponseEntity<String> delete(@PathVariable long auctionNo) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable long id) {
 
-        service.deleteById(auctionNo);
+        service.deleteById(id);
 
         return new ResponseEntity<>("delete success", HttpStatus.NO_CONTENT);
     }

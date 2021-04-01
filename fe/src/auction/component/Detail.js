@@ -4,18 +4,19 @@ import axios from 'axios'
 const Detail = (props) => {
     const [productDetail, setproductDetail] = useState("");
 
-    const detail = () => {
+    const getProductDetail = () => {
         axios.get(`http://localhost:8080/auctions/${props.match.params.id}`)
         .then(res => {
             setproductDetail(res.data);
+            console.log("users: " + JSON.stringify(productDetail.users))
         })
         .catch(err => {
           console.log(err)
         })
     }
 
-    const placeBid = () => {
-        axios.put(`http://localhost:8080/auctions/${props.match.params.id}`)
+    const update = () => {
+        axios.put(`http://localhost:8080/auctions/${props.match.params.id}`, {})
         .then(res => {
             setproductDetail(res.data);
         })
@@ -36,7 +37,41 @@ const Detail = (props) => {
         })
     }
 
-    useEffect(() => detail(), [productDetail.reservedPrice])
+    const addUser = () => {
+        axios.put(`http://localhost:8080/auctions/${props.match.params.id}`, {users: [
+            {
+                userNo: 1,
+                username: "cksdnr001",
+                realName: "노찬욱",
+                email: "cksdnr1111@gmail.com",
+                gender: "man",
+                phoneNumber: "phoneNumber"
+            },
+            {
+                userNo: 2,
+                username: "cksdnr002",
+                realName: "박찬욱",
+                email: "cksdnr2222@gmail.com",
+                gender: "man",
+                phoneNumber: "phoneNumber"
+            },
+            {
+                userNo: 3,
+                username: "cksdnr003",
+                realName: "김찬욱",
+                email: "cksdnr3333@gmail.com",
+                gender: "man",
+                phoneNumber: "phoneNumber"
+            }
+        ]
+
+        })
+        .then(res => {
+            
+        })
+    }
+
+    useEffect(() => getProductDetail(), [productDetail.reservedPrice])
 
     return (
         <>
@@ -44,7 +79,7 @@ const Detail = (props) => {
         <div>productNo: {productDetail.productNo}</div>
         <div>제시 가격: {productDetail.reservedPrice}</div>
         <div>경매 단위: {productDetail.placedPrice}</div>
-        <button onClick={placeBid}>Place Bid!</button>
+        <button onClick={update}>Place Bid!</button>
         <button onClick={deleteAuction}>delete</button>
         </>
     )

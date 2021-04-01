@@ -23,7 +23,7 @@ const Signup = (props) => {
     }, [inputs])
 
     const signup = useCallback(() => {
-        axios.post(`http://localhost:8080/users`, { username, password, realName, email, gender, phoneNumber, birthday })
+        axios.post(`http://localhost:8080/users/signup`, { username, password, realName, email, gender, phoneNumber, birthday })
         .then(res => {
             console.log(res.data)
             props.history.push("/")

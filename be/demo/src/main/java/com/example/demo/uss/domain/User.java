@@ -12,22 +12,21 @@ import javax.persistence.Table;
 
 import com.example.demo.auction.auction.domain.Auction;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Entity
+@Entity()
 @Getter
-@Setter
 @NoArgsConstructor
 @Table(name = "users")
 public class User {
 	
-    @Id
+	@Id
     @GeneratedValue
     @Column(name="user_no")
 	private long userNo;
-	
+
 	@Column(name = "username") 
 	private String username;
 
@@ -52,7 +51,21 @@ public class User {
     @Column(name = "phone_number")
 	private String phoneNumber;
 
-	@ManyToOne
-	@JoinColumn(name="auction_id")
-	private Auction auction;
+	// @ManyToOne
+	// @JoinColumn(name="auction_id")
+	// private Auction auction;
+
+	@Builder
+	public User(String username, String password, String realName, String email, Date birthday, String gender,
+			Date regdate, String phoneNumber, Auction auction) {
+		this.username = username;
+		this.password = password;
+		this.realName = realName;
+		this.email = email;
+		this.birthday = birthday;
+		this.gender = gender;
+		this.regdate = regdate;
+		this.phoneNumber = phoneNumber;
+		// this.auction = auction;
+	}
 }

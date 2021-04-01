@@ -31,9 +31,6 @@ const Create = (props) => {
                 <thead/>
                 <tbody>
                     <tr>
-                        <td>User: {}</td>
-                    </tr>
-                    <tr>
                         <td>제시 가격</td>
                         <td><input type="text" name="reservedPrice" value={reservedPrice} placeholder="Insert ReservedPrice" 
                         onChange={ e => setReservedPrice(e.target.value) } /></td>

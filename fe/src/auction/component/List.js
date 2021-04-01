@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const List = () => {
-    const [auctions, setAuctions] = useState();
+    const [auctions, setAuctions] = useState([]);
 
     const getAuctions = () => {
         axios.get(`http://localhost:8080/auctions`)
