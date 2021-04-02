@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 
-const Login = () => {
+const Login = (props) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
@@ -9,6 +9,12 @@ const Login = () => {
         axios.post(`http://localhost:8080/users/login`, { username, password })
             .then(res => {
                 console.log(res)
+                if (res.data) {
+                    localStorage.clear()
+                    localStorage.setItem("0", res.data)
+                    console.log(localStorage.getItem("0"))
+                    props.history.push('/')
+                }
             })
             .catch(err => {
                 console.log(err)

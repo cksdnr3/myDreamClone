@@ -29,11 +29,12 @@ const List = () => {
                     <th align="center" width="150">product</th>
                     <th align="center" width="100">reservedPrice</th>
                     <th align="center" width="100">placedPrice</th>
-                    <th align="center" width="100">username</th>
+                    <th align="center" width="100">seller</th>
+                    <th align="center" width="100">join</th>
                 </tr>
             </thead>
             <tbody>
-                {auctions ?
+                {(auctions || auctions.length == 0) ?
                 auctions.map((auction, id) => {
                     return (
                         <tr key={id}>
@@ -43,10 +44,11 @@ const List = () => {
                             <td align="center">{auction.reservedPrice}</td>
                             <td align="center">{auction.placedPrice}</td>
                             <td align="center">{auction.username}</td>
+                            <td align="center">{auction.join}</td>
                         </tr>                   
                     )
                 }) : 
-                <tr><td colSpan="4">List is empty</td></tr>}
+                <tr><td colSpan="6">List is empty</td></tr>}
             </tbody>
         </table>
         </>

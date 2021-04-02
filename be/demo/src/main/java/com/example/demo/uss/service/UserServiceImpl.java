@@ -1,10 +1,7 @@
 package com.example.demo.uss.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.example.demo.auction.auction.domain.Auction;
-import com.example.demo.cmm.service.AbstractService;
 import com.example.demo.uss.domain.User;
 import com.example.demo.uss.repository.UserRepository;
 
@@ -16,64 +13,62 @@ import lombok.extern.java.Log;
 @Log
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl extends AbstractService<User> implements UserService {
+public class UserServiceImpl implements UserService {
     private final UserRepository repo;
 
     @Override
-    public long count() {
-        return 0;
-    }
+    public String updatePrivacy(User entity, String username) {
+        User selected = repo.findByUsername(username).orElseThrow();
 
-    @Override
-    public boolean existsById(long id) {
-        return false;
-    }
+        User updated = selected.builder()
+            .birthday(entity.getBirthday())
+            .email(entity.getEmail())
+            .gender(entity.getGender())
+            .password(entity.getPassword())
+            .phoneNumber(entity.getPhoneNumber())
+            .realName(entity.getRealName())
+            .build();
 
-    @Override
-    public List<User> findAll() {
-        return null;
-    }
-
-    @Override
-    public void deleteById(long id) {
+        log.info("updated: " + updated.getRealName());
         
+        repo.save(updated);
+
+        return updated.getUsername();
     }
 
     @Override
-    public User getOne(long id) {
-        return null;
-    }
+    public String signup(User entity) {
+        boolean isExist = repo.existsByUsername(entity.getUsername());
 
-    @Override
-    public Long save(User entity) {
+        if(isExist) {
+            return "Already exist id, re-enter id";
+        }
+
         repo.save(entity);
 
-        return null;
-    }
-
-    @Override
-    public Optional<User> findById(long id) {
-        return null;
-    }
-
-    @Override
-    public Long updateById(long id, Auction entity) {
-        
-        return null;
+        return "signup success";
     }
 
     @Override
     public String login(User entity) {
-        log.info("service login");
-        log.info("entity username: " + entity.getUsername());
+
         User selected = repo.login(entity.getUsername());
 
-        log.info("selected usename: " + selected.getUsername());
+        log.info("size: " + selected);
 
-        if(selected.getPassword() == entity.getPassword()) {
-            return "login success";
+        if(selected.getPassword().equals(entity.getPassword())) {
+            
+            return selected.getUsername();
         }
         
-        return "re-enter password";
+        return null;
+    }
+
+    @Override
+    public User myPage(String username) {
+
+        User user = repo.findByUsername(username).orElseThrow();
+
+        return user;
     }
 }

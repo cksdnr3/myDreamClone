@@ -2,18 +2,13 @@ import { React, useCallback, useState } from 'react'
 import axios from 'axios'
 
 const Create = (props) => {
-    const [auctionNo, setAuctionNo] = useState('');
+
     const [reservedPrice, setReservedPrice] = useState('');
     const [placedPrice, setPlacedPrice] = useState('');
-    const [productNo, setProductNo] = useState('');
     const [product, setProduct] = useState('');
-    const [username, setUsername] = useState('');
-    const [regdate, setRegdate] = useState('');
-    const [winBid, setWinBid] = useState('');
-    const [userNo, setuserNo] = useState('');
 
     const regist = () => {
-        axios.post(`http://localhost:8080/auctions`, { reservedPrice, placedPrice, product, productNo })
+        axios.post(`http://localhost:8080/auctions`, { reservedPrice, placedPrice, product })
         .then(res => {
           console.log(res)
           props.history.push('/list')
@@ -36,7 +31,7 @@ const Create = (props) => {
                         onChange={ e => setReservedPrice(e.target.value) } /></td>
                     </tr>
                     <tr>
-                        <td>경매 시작 가격</td>
+                        <td>경매 단위</td>
                         <td><input type="text" name="placedPrice" value={placedPrice} placeholder="Insert PlacedPrice" 
                         onChange={ e => setPlacedPrice(e.target.value)} /></td>
                     </tr>
@@ -45,14 +40,8 @@ const Create = (props) => {
                         <td><input type="text" name="product" value={product} placeholder="Insert Product" 
                         onChange={ e => setProduct(e.target.value) } /></td>
                     </tr>
-                    <tr>
-                        <td>상품 번호</td>
-                        <td><input type="text" name="productNo" value={productNo} placeholder="Insert ProductNo" 
-                        onChange={ e => setProductNo(e.target.value) } /></td>
-                    </tr>
                 </tbody>
             </table>
-
             <button type="submit" onClick={regist} >create</button>
         </form>
         </>

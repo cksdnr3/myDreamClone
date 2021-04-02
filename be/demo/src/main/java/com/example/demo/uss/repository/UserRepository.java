@@ -1,5 +1,8 @@
 package com.example.demo.uss.repository;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.example.demo.uss.domain.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,6 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Transactional
-    @Query("select u from User u where username= :username")
+    @Query("select u.username, u.password from User u where username= :username")
     User login(@Param("username") String username);
+
+    boolean existsByUsername(@Param("username") String username);
+
+    Optional<User> findByUsername(@Param("username") String username);
 }

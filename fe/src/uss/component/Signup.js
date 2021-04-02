@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css';
 
 const Signup = (props) => {
+    const [birthday, setBirthday] = useState(new Date());
     const [inputs, setInputs] = useState({
         username: "",
         password: "",
@@ -11,22 +12,22 @@ const Signup = (props) => {
         email: "",
         gender: "man",
         phoneNumber: "",
+        birthday
     })
-
-    const [birthday, setBirthday] = useState(new Date());
-
     const {username, password, realName, 
         email, gender, phoneNumber} = inputs
 
     const onChange = useCallback(e => {
         setInputs({...inputs, [e.target.name]: e.target.value})
     }, [inputs])
-
     const signup = useCallback(() => {
-        axios.post(`http://localhost:8080/users/signup`, { username, password, realName, email, gender, phoneNumber, birthday })
+        axios.post(`http://localhost:8080/users/signup`, inputs)
         .then(res => {
-            console.log(res.data)
-            props.history.push("/")
+            alert(res.data)
+            if (res.data.indexOf("success")) {
+                props.history.push("/")
+            }
+            props.history.push("/signup")
         })
         .catch(err => {
             console.log(err)
