@@ -8,7 +8,7 @@ const MyPage = (props) => {
             ...user,
             [e.target.name]: e.target.value
         })
-    })
+    }, [user])
 
     const getDetail = () => {
         axios.get(`http://localhost:8080/users/${props.match.params.username}`)
@@ -26,11 +26,23 @@ const MyPage = (props) => {
             setUser(res.data)
             localStorage.clear()
             localStorage.setItem("0", res.data)
-            // forceU
+            getDetail();
         })
         .catch(err => {
             console.log(err)
         })
+    }
+
+    const doDelete = () => {
+        
+        if(window.confirm("Delete to confirm")) {
+            axios.delete(`http://localhost:8080/users/${props.match.params.username}`)
+            .then(res => {
+                alert(res.data)
+                localStorage.clear()
+                props.history.push('/')
+            })
+        }
     }
 
     useEffect(() => getDetail(), [])
@@ -61,6 +73,7 @@ const MyPage = (props) => {
                 <input type="text" name="phoneNumber" value={user.phoneNumber || ""} onChange={onChange} />
             </label><br/>
             <button type="submit" onClick={doModify}>modify</button>
+            <button onClick={doDelete}>delete</button>
         </form>
         
         </>

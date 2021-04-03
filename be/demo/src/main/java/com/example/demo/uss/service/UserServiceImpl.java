@@ -20,20 +20,17 @@ public class UserServiceImpl implements UserService {
     public String updatePrivacy(User entity, String username) {
         User selected = repo.findByUsername(username).orElseThrow();
 
-        User updated = selected.builder()
-            .birthday(entity.getBirthday())
-            .email(entity.getEmail())
-            .gender(entity.getGender())
-            .password(entity.getPassword())
-            .phoneNumber(entity.getPhoneNumber())
-            .realName(entity.getRealName())
-            .build();
+        selected.setBirthday(entity.getBirthday());
+        selected.setEmail(entity.getEmail());
+        selected.setGender(entity.getGender());
+        selected.setPassword(entity.getPassword());
+        selected.setPhoneNumber(entity.getPhoneNumber());
+        selected.setRealName(entity.getRealName());
+        selected.setUsername(entity.getUsername());
 
-        log.info("updated: " + updated.getRealName());
-        
-        repo.save(updated);
+        repo.save(selected);
 
-        return updated.getUsername();
+        return selected.getUsername();
     }
 
     @Override
@@ -70,5 +67,10 @@ public class UserServiceImpl implements UserService {
         User user = repo.findByUsername(username).orElseThrow();
 
         return user;
+    }
+
+    @Override
+    public void deleteAccount(String username) {
+        repo.deleteByUsername(username);
     }
 }

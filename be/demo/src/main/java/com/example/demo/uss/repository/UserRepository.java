@@ -15,10 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Transactional
-    @Query("select u.username, u.password from User u where username= :username")
+    @Query("select u from User u where username= :username")
     User login(@Param("username") String username);
 
     boolean existsByUsername(@Param("username") String username);
 
     Optional<User> findByUsername(@Param("username") String username);
+
+    @Transactional
+    void deleteByUsername(@Param("username")String username);
 }

@@ -7,4 +7,5 @@ public interface UserService {
     public String signup(User entity);
     public String updatePrivacy(User entity, String username);
     public User myPage(String username);
+    public void deleteAccount(String username);
 }

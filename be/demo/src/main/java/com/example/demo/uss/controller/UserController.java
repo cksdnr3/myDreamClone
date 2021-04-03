@@ -6,6 +6,7 @@ import com.example.demo.uss.service.UserServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,5 +62,13 @@ public class UserController {
         String token = service.updatePrivacy(entity, username);
 
         return new ResponseEntity<>(token, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{username}")
+    public ResponseEntity<String> delete(@PathVariable String username) {
+
+        service.deleteAccount(username);
+
+        return new ResponseEntity<>("Delete Complete", HttpStatus.OK);
     }
 }
