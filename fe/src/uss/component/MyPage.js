@@ -33,8 +33,7 @@ const MyPage = (props) => {
         })
     }
 
-    const doDelete = () => {
-        
+    const doDelete = () => {  
         if(window.confirm("Delete to confirm")) {
             axios.delete(`http://localhost:8080/users/${props.match.params.username}`)
             .then(res => {
@@ -45,7 +44,7 @@ const MyPage = (props) => {
         }
     }
 
-    useEffect(() => getDetail(), [])
+    useEffect(() => getDetail())
 
     return (
         <>

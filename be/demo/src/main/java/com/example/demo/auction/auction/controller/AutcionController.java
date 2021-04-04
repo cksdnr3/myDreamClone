@@ -59,10 +59,10 @@ public class AutcionController {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable long id, 
                                         @RequestBody Auction entity) {
-
+        service.saveSumReservedPrice(id);
         // log.info("users: " + entity.getUsers().size());
         // if (false) {
-        //     service.saveSumReservedPrice(id);
+            
         // } else {
         //     service.updateById(id, entity);
         // }

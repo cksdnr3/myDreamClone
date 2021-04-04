@@ -34,13 +34,13 @@ const List = () => {
                 </tr>
             </thead>
             <tbody>
-                {(auctions || auctions.length == 0) ?
+                {(auctions || auctions.length === 0) ?
                 auctions.map((auction, id) => {
                     return (
                         <tr key={id}>
-                            <td align="center">{auction.auctionNo}</td>
+                            <td align="center"><Link to={`/detail/${auction.auctionNo}`}>{auction.auctionNo}</Link></td>
                             <td align="center">{auction.productNo}</td>
-                            <td align="center"><Link to={`/detail/${auction.auctionNo}`}>{auction.product}</Link></td>
+                            <td align="center">{auction.product}</td>
                             <td align="center">{auction.reservedPrice}</td>
                             <td align="center">{auction.placedPrice}</td>
                             <td align="center">{auction.username}</td>

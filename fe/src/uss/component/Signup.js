@@ -14,13 +14,15 @@ const Signup = (props) => {
         phoneNumber: "",
         birthday
     })
+
     const {username, password, realName, 
         email, gender, phoneNumber} = inputs
 
     const onChange = useCallback(e => {
         setInputs({...inputs, [e.target.name]: e.target.value})
     }, [inputs])
-    const signup = useCallback(() => {
+
+    const signup = () => {
         axios.post(`http://localhost:8080/users/signup`, inputs)
         .then(res => {
             alert(res.data)
@@ -32,12 +34,12 @@ const Signup = (props) => {
         .catch(err => {
             console.log(err)
         })
-    })
+    }
 
     return (
         <>
         <h2>Signup</h2>
-        <form onSubmit={e => e.preventDefault() }>
+        <form onSubmit={ e => e.preventDefault() }>
             <label>ID:
                 <input type="text" name="username" value={username} onChange={onChange} />
             </label><br/>

@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
 
 const Detail = (props) => {
     const [productDetail, setproductDetail] = useState("");
 
-    const getProductDetail = () => {
+    const getProductDetail = useCallback(() => {
         axios.get(`http://localhost:8080/auctions/${props.match.params.id}`)
         .then(res => {
             setproductDetail(res.data);
-            console.log("users: " + JSON.stringify(productDetail.users))
         })
         .catch(err => {
           console.log(err)
         })
-    }
+    }, [productDetail, props.match.params.id])
 
     const update = () => {
         axios.put(`http://localhost:8080/auctions/${props.match.params.id}`, {})
@@ -37,39 +36,39 @@ const Detail = (props) => {
         })
     }
 
-    const addUser = () => {
-        axios.put(`http://localhost:8080/auctions/${props.match.params.id}`, {users: [
-            {
-                userNo: 1,
-                username: "cksdnr001",
-                realName: "노찬욱",
-                email: "cksdnr1111@gmail.com",
-                gender: "man",
-                phoneNumber: "phoneNumber"
-            },
-            {
-                userNo: 2,
-                username: "cksdnr002",
-                realName: "박찬욱",
-                email: "cksdnr2222@gmail.com",
-                gender: "man",
-                phoneNumber: "phoneNumber"
-            },
-            {
-                userNo: 3,
-                username: "cksdnr003",
-                realName: "김찬욱",
-                email: "cksdnr3333@gmail.com",
-                gender: "man",
-                phoneNumber: "phoneNumber"
-            }
-        ]
+    // const addUser = () => {
+    //     axios.put(`http://localhost:8080/auctions/${props.match.params.id}`, {users: [
+    //         {
+    //             userNo: 1,
+    //             username: "cksdnr001",
+    //             realName: "노찬욱",
+    //             email: "cksdnr1111@gmail.com",
+    //             gender: "man",
+    //             phoneNumber: "phoneNumber"
+    //         },
+    //         {
+    //             userNo: 2,
+    //             username: "cksdnr002",
+    //             realName: "박찬욱",
+    //             email: "cksdnr2222@gmail.com",
+    //             gender: "man",
+    //             phoneNumber: "phoneNumber"
+    //         },
+    //         {
+    //             userNo: 3,
+    //             username: "cksdnr003",
+    //             realName: "김찬욱",
+    //             email: "cksdnr3333@gmail.com",
+    //             gender: "man",
+    //             phoneNumber: "phoneNumber"
+    //         }
+    //     ]
 
-        })
-        .then(res => {
+    //     })
+    //     .then(res => {
             
-        })
-    }
+    //     })
+    // }
 
     useEffect(() => getProductDetail(), [productDetail.reservedPrice])
 
